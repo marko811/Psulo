@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: library/postgres:12.1-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_HOST_AUTH_METHOD=trust
+      - POSTGRES_DB=psulo-test-task-sample
+
+  app:
+    image: shlajin/psulo-test-task-sample-backend:0.0.1
+    ports:
+      - "3030:3030"
+    depends_on:
+      - postgres
